@@ -130,7 +130,7 @@ class LoginWindows extends JFrame{
 
 
 class mainWindows extends JFrame{
-    JPanel G1,G2,G3,G4;
+    JPanel G1,G2,G3,G4,G5,G6;
     JButton ConnectBtn,disConnectBtn;
     JTextField addressField;
     JLabel StatusText;
@@ -144,6 +144,7 @@ class mainWindows extends JFrame{
     TileFactoryInfo info;
     DefaultTileFactory tileFactory;
     GeoPosition frankfurt;
+    mButton ImageBtn,TimerBtn,OutputBtn;
 
 
     mainWindows(int x , int y , int w , int h , String name)
@@ -208,7 +209,7 @@ class mainWindows extends JFrame{
         // 建立裝置清單組
         G3 = new JPanel();
         G3.setBorder(BorderFactory.createTitledBorder("在線裝置"));
-        G3.setBounds(10,240,500,350);
+        G3.setBounds(10,230,500,350);
         G3.setLayout(null);
         this.add(G3);
 
@@ -243,6 +244,32 @@ class mainWindows extends JFrame{
         mapKit.setBounds(20,30,1325,925);
         G4.add(mapKit);
 
+        // 建立指示組別
+        G5 = new JPanel();
+        G5.setLayout(null);
+        G5.setBorder(BorderFactory.createTitledBorder("控制指示"));
+        G5.setBounds(10,580,500,280);
+        this.add(G5);
+
+        // 建立選項按鈕組別
+        G6 = new JPanel();
+        G6.setLayout(null);
+        G6.setBorder(BorderFactory.createTitledBorder("多元選項區"));
+        G6.setBounds(10,860,500,125);
+        this.add(G6);
+
+        // 建立影像擷取按鈕
+        ImageBtn = new mButton(20,40,140,60,"影像擷取",21);
+        G6.add(ImageBtn);
+
+        // 建立計時器按鈕
+        TimerBtn = new mButton(180,40,140,60,"計時器",21);
+        G6.add(TimerBtn);
+
+        // 建立資料視覺化按鈕
+        OutputBtn = new mButton(340,40,140,60,"資料視覺化",18);
+        G6.add(OutputBtn);
+
         // 建立監聽事件
         init();
 
@@ -256,7 +283,8 @@ class mainWindows extends JFrame{
         ConnectBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("123");
+                JOptionPane.showMessageDialog(null,"連線中");
+                StatusText.setText("完成連線");
             }
         });
     }
