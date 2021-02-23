@@ -14,9 +14,7 @@ import org.jxmapviewer.viewer.TileFactoryInfo;
 public class ControlPanel {
     public static void main(String [] arg)
     {
-        //LoginWindows mloginWindows = new LoginWindows(0,0,500,500,"無人機(船)控制器");
-        mainWindows m = new mainWindows(0,0,1920,1080,"無人機(船)控制中心");
-        //Sample6 s = new Sample6();
+        LoginWindows mloginWindows = new LoginWindows(0,0,500,500,"無人機(船)控制器");
     }
 }
 
