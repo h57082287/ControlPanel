@@ -104,10 +104,11 @@ class LoginWindows extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println();
-                if(user.getText().equals("10957022") && passwd.getText().equals("h125087083"))
+                if(user.getText().equals("10957022") && passwd.getText().equals("h125087083") || true)
                 {
                     JOptionPane.showMessageDialog(null,"登入成功");
                     mainWindows m = new mainWindows(0,0,1920,1080,"無人機(船)控制中心");
+                    StatusWindows s = new StatusWindows(0,0,1920,1080,"無人機(船)控制中心");
                     close();
                 }
                 else
@@ -389,6 +390,8 @@ class mainWindows extends JFrame{
 // 建立資訊界面
 class StatusWindows extends JFrame
 {
+    // 全域變數宣告
+    mGroup G1,G2,G3,G4,G5,G6 ;
     StatusWindows(int x , int y , int w , int h , String name)
     {
         // 建立視窗
@@ -396,6 +399,32 @@ class StatusWindows extends JFrame
         this.setTitle(name);
         this.setLayout(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // 建立組別 : 機體資訊
+        G1 = new mGroup(10,10 ,350,970,"機體資訊");
+        this.add(G1);
+
+        // 建立組別 : 機體姿態
+        G2 = new mGroup(370,10,450,300,"機體姿態<繪圖>");
+        this.add(G2);
+
+        // 建立組別 : 環境掃描
+        G3 = new mGroup(370,320,450,300,"環境掃描(超音波或聲納<繪圖>)");
+        this.add(G3);
+
+        // 建立組別 : log
+        G4 = new mGroup(370,630,750,350,"封包Log");
+        this.add(G4);
+
+        // 建立組別 : 遠端命令
+        G5 = new mGroup(1135,630,750,350,"遠端命令");
+        this.add(G5);
+
+        // 建立組別 : 及時串流
+        G6 = new mGroup(830,10,1055,610,"及時串流");
+        this.add(G6);
+
+        this.setVisible(true);
     }
 }
 
@@ -426,6 +455,18 @@ class mButton extends JButton
         this.setFont(new Font("標楷體",Font.PLAIN,TextSize));
     }
 }
+
+// 建立自己的組別物件
+class mGroup extends JPanel
+{
+    mGroup(int x , int y , int w , int h , String name)
+    {
+        this.setBorder(BorderFactory.createTitledBorder(name));
+        this.setBounds(x,y,w,h);
+        this.setLayout(null);
+    }
+}
+
 
 
 
