@@ -8,8 +8,7 @@ import org.jxmapviewer.google.GoogleMapsTileFactoryInfo;
 import org.jxmapviewer.viewer.DefaultTileFactory;
 import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.TileFactoryInfo;
-import org.jxmapviewer.viewer.bmng.CylindricalProjectionTileFactory;
-import org.jxmapviewer.viewer.esri.ESRITileFactory;
+
 
 
 public class ControlPanel {
