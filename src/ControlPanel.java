@@ -389,7 +389,14 @@ class mainWindows extends JFrame{
 // 建立資訊界面
 class StatusWindows extends JFrame
 {
-
+    StatusWindows(int x , int y , int w , int h , String name)
+    {
+        // 建立視窗
+        this.setBounds(x,y,w,h);
+        this.setTitle(name);
+        this.setLayout(null);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
 }
 
 // 建立自己的文字物件
@@ -419,5 +426,8 @@ class mButton extends JButton
         this.setFont(new Font("標楷體",Font.PLAIN,TextSize));
     }
 }
+
+
+
 
 
