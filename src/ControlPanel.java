@@ -253,30 +253,10 @@ class mainWindows extends JFrame{
     public void init()
     {
         // 建立連線按鈕事件
-        ConnectBtn.addMouseListener(new MouseListener() {
+        ConnectBtn.addActionListener(new ActionListener() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("123");
             }
         });
     }
