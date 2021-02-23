@@ -1,8 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.geom.Point2D;
-
 import org.jxmapviewer.*;
 import org.jxmapviewer.google.GoogleMapsTileFactoryInfo;
 import org.jxmapviewer.viewer.DefaultTileFactory;
