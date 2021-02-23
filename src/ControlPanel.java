@@ -144,7 +144,7 @@ class mainWindows extends JFrame{
     TileFactoryInfo info;
     DefaultTileFactory tileFactory;
     GeoPosition frankfurt;
-    mButton ImageBtn,TimerBtn,OutputBtn;
+    mButton ImageBtn,TimerBtn,OutputBtn,WBtn,SBtn,DBtn,ABtn,UpBtn,DownBtn,RightBtn,LeftBtn;
 
 
     mainWindows(int x , int y , int w , int h , String name)
@@ -250,6 +250,22 @@ class mainWindows extends JFrame{
         G5.setBorder(BorderFactory.createTitledBorder("控制指示"));
         G5.setBounds(10,580,500,280);
         this.add(G5);
+
+        // 建立控制向組
+        WBtn = new mButton(100,80,50,50,"W",24);
+        ABtn = new mButton(40,150,50,50,"A",24);
+        SBtn = new mButton(100,150,50,50,"S",24);
+        DBtn = new mButton(160,150,50,50,"D",24);
+
+        UpBtn = new mButton(330,80,60,50,"UP",16);
+        DownBtn = new mButton(260,150,60,50,"DOWN",12);
+        RightBtn = new mButton(330,150,60,50,"RIGHT",10);
+        LeftBtn = new mButton(400,150,60,50,"LEFT",12);
+
+        G5.add(WBtn);   G5.add(UpBtn);
+        G5.add(ABtn);   G5.add(DownBtn);
+        G5.add(SBtn);   G5.add(RightBtn);
+        G5.add(DBtn);   G5.add(LeftBtn);
 
         // 建立選項按鈕組別
         G6 = new JPanel();
