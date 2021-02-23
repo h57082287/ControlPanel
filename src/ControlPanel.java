@@ -8,7 +8,7 @@ import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.TileFactoryInfo;
 
 
-
+// 程式進入點
 public class ControlPanel {
     public static void main(String [] arg)
     {
@@ -16,6 +16,7 @@ public class ControlPanel {
     }
 }
 
+// 建立登入視窗
 class LoginWindows extends JFrame{
     // 建立物件
     JLabel userText,PasswdText,Logo1Buffer,Logo2Buffer,Title;
@@ -124,7 +125,7 @@ class LoginWindows extends JFrame{
     }
 }
 
-
+// 建立主介面
 class mainWindows extends JFrame{
     JPanel G1,G2,G3,G4,G5,G6;
     JButton ConnectBtn,disConnectBtn;
@@ -150,6 +151,7 @@ class mainWindows extends JFrame{
         this.setLayout(null);
         this.setTitle(name);
         this.setBounds(x,y,w,h);
+        this.setFocusable(true);
 
         // 建立按鈕組
         G1 = new JPanel();
@@ -254,9 +256,9 @@ class mainWindows extends JFrame{
         DBtn = new mButton(160,150,50,50,"D",24);
 
         UpBtn = new mButton(330,80,60,50,"UP",16);
-        DownBtn = new mButton(260,150,60,50,"DOWN",12);
-        RightBtn = new mButton(330,150,60,50,"RIGHT",10);
-        LeftBtn = new mButton(400,150,60,50,"LEFT",12);
+        DownBtn = new mButton(330,150,60,50,"DOWN",12);
+        RightBtn = new mButton(400,150,60,50,"RIGHT",10);
+        LeftBtn = new mButton(260,150,60,50,"LEFT",12);
 
         G5.add(WBtn);   G5.add(UpBtn);
         G5.add(ABtn);   G5.add(DownBtn);
@@ -299,10 +301,96 @@ class mainWindows extends JFrame{
                 StatusText.setText("完成連線");
             }
         });
+
+        // 鍵盤監聽事件
+        this.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                if(e.getKeyChar() == 'w')
+                {
+                    WBtn.setBackground(Color.pink);
+                }
+                if(e.getKeyChar() == 'a')
+                {
+                    ABtn.setBackground(Color.pink);
+                }
+                if(e.getKeyChar() == 's')
+                {
+                    SBtn.setBackground(Color.pink);
+                }
+                if(e.getKeyChar() == 'd')
+                {
+                    DBtn.setBackground(Color.pink);
+                }
+
+
+                if(e.getKeyCode() == 37)
+                {
+                    LeftBtn.setBackground(Color.pink);
+                }
+                if(e.getKeyCode() == 38)
+                {
+                    UpBtn.setBackground(Color.pink);
+                }
+                if(e.getKeyCode() == 39)
+                {
+                    RightBtn.setBackground(Color.pink);
+                }
+                if(e.getKeyCode() == 40)
+                {
+                    DownBtn.setBackground(Color.pink);
+                }
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+                if(e.getKeyChar() == 'w')
+                {
+                    WBtn.setBackground(null);
+                }
+                if(e.getKeyChar() == 'a')
+                {
+                    ABtn.setBackground(null);
+                }
+                if(e.getKeyChar() == 's')
+                {
+                    SBtn.setBackground(null);
+                }
+                if(e.getKeyChar() == 'd')
+                {
+                    DBtn.setBackground(null);
+                }
+
+
+                if(e.getKeyCode() == 37)
+                {
+                    LeftBtn.setBackground(null);
+                }
+                if(e.getKeyCode() == 38)
+                {
+                    UpBtn.setBackground(null);
+                }
+                if(e.getKeyCode() == 39)
+                {
+                    RightBtn.setBackground(null);
+                }
+                if(e.getKeyCode() == 40)
+                {
+                    DownBtn.setBackground(null);
+                }
+            }
+        });
     }
 }
 
+// 建立資訊界面
+class StatusWindows extends JFrame
+{
 
+}
 
 // 建立自己的文字物件
 class mLabel extends JLabel
@@ -331,4 +419,5 @@ class mButton extends JButton
         this.setFont(new Font("標楷體",Font.PLAIN,TextSize));
     }
 }
+
 
