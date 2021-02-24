@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+
+import org.jetbrains.annotations.NotNull;
 import org.jxmapviewer.*;
 import org.jxmapviewer.google.GoogleMapsTileFactoryInfo;
 import org.jxmapviewer.viewer.DefaultTileFactory;
@@ -105,7 +107,7 @@ class LoginWindows extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println();
-                if(user.getText().equals("10957022") && passwd.getText().equals("h125087083") || true)
+                if(user.getText().equals("10957022") && passwd.getText().equals("h125087083"))
                 {
                     JOptionPane.showMessageDialog(null,"登入成功");
                     mainWindows m = new mainWindows(0,0,1920,1080,"無人機(船)控制中心");
@@ -437,6 +439,9 @@ class StatusWindows extends JFrame
         G2 = new mGroup(370,10,450,300,"機體姿態<繪圖>");
         this.add(G2);
 
+        // 建立繪圖容器
+        G2.add(new Interface(10,15,420,270));
+
         // 建立組別 : 環境掃描
         G3 = new mGroup(370,320,450,300,"環境掃描(超音波或聲納<繪圖>)");
         this.add(G3);
@@ -493,6 +498,35 @@ class mGroup extends JPanel
         this.setBorder(BorderFactory.createTitledBorder(name));
         this.setBounds(x,y,w,h);
         this.setLayout(null);
+    }
+}
+
+class Interface extends JPanel implements Runnable
+{
+    int x,y,w,h ;
+    Interface(int x , int y , int w , int h)
+    {
+
+        this.setLayout(null);
+        this.setBounds(x,y,w,h);
+        this.x = x; this.y = y; this.w = w; this.h = h ;
+        this.setVisible(true);
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        g.setColor(Color.cyan);
+        g.fillRect(x,y,w,h/2);
+        g.setColor(new Color(139,69,19));
+        g.fillRect(x,h/2,w,h/2);
+
+    }
+
+
+    @Override
+    public void run() {
+
     }
 }
 
