@@ -7,8 +7,8 @@
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/jxmapviewer/jxmapviewer2/2.6/jxmapviewer2-2.6.jar!/" />
-      <root url="jar://$USER_HOME$/.ideaLibSources/jxmapviewer2-2.6-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/jxmapviewer/jxmapviewer2/2.6/jxmapviewer2-2.6-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/commons-logging/commons-logging/1.1.3/commons-logging-1.1.3-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

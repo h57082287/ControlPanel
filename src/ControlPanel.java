@@ -12,7 +12,8 @@ import org.jxmapviewer.viewer.TileFactoryInfo;
 public class ControlPanel {
     public static void main(String [] arg)
     {
-        LoginWindows mloginWindows = new LoginWindows(0,0,500,500,"無人機(船)控制器");
+        //LoginWindows mloginWindows = new LoginWindows(0,0,500,500,"無人機(船)控制器");
+        new StatusWindows(0,0,1920,1080,"測試");
     }
 }
 
@@ -392,6 +393,7 @@ class StatusWindows extends JFrame
 {
     // 全域變數宣告
     mGroup G1,G2,G3,G4,G5,G6 ;
+    mLabel Status,Lat,Lon,Hight,Speed,Acc_X,Acc_Y,Acc_Z,Direction,Pressure, Environmental_status,CPU_load,CPU_temperature,Body_temperature,LoraOrWifiSign,Battery,GPSSign;
     StatusWindows(int x , int y , int w , int h , String name)
     {
         // 建立視窗
@@ -401,8 +403,35 @@ class StatusWindows extends JFrame
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // 建立組別 : 機體資訊
-        G1 = new mGroup(10,10 ,350,970,"機體資訊");
+        G1 = new mGroup(10,20 ,350,970,"機體資訊");
         this.add(G1);
+        int X = 30 ;
+        int Y = 40 ;
+        int W = 320 ;
+        int H = 30 ;
+        int FontSize = 21 ;
+        // 建立資訊
+        Status = new mLabel(X,Y+Y*0,W,H,FontSize,"現在裝置     無人機 ");
+        Lat = new mLabel(X,Y+Y*1,W,H,FontSize,"經度         0.000");
+        Lon = new mLabel(X,Y+Y*2,W,H,FontSize,"緯度         0.000");
+        Hight =  new mLabel(X,Y+Y*3,W,H,FontSize,"高度         0 m");
+        Speed = new mLabel(X,Y+Y*4,W,H,FontSize,"速度         0 m/s");
+        Acc_X = new mLabel(X,Y+Y*5,W,H,FontSize,"X速度        0");
+        Acc_Y = new mLabel(X,Y+Y*6,W,H,FontSize,"Y速度        0");
+        Acc_Z = new mLabel(X,Y+Y*7,W,H,FontSize,"Z速度        0");
+        Direction = new mLabel(X,Y+Y*8,W,H,FontSize,"方向         0 °");
+        Pressure = new mLabel(X,Y+Y*9,W,H,FontSize,"壓力         0");
+        Environmental_status = new mLabel(X,Y+Y*10,W,H,FontSize,"環境         - ");
+        CPU_load = new mLabel(X,Y+Y*11,W,H,FontSize,"CPU          0 % ");
+        CPU_temperature = new mLabel(X,Y+Y*12,W,H,FontSize,"CPU溫度      0 ℃ ");
+        Body_temperature = new mLabel(X,Y+Y*13,W,H,FontSize,"機體溫度     0 ℃ ");
+        LoraOrWifiSign = new mLabel(X,Y+Y*14,W,H,FontSize,"信號源強度   - ");
+        GPSSign = new mLabel(X,Y+Y*15,W,H,FontSize,"GPS強度      - ");
+        Battery = new mLabel(X,Y+Y*16,W,H,FontSize,"電池電量     0 % ");
+
+        G1.add(Status); G1.add(Lat); G1.add(Lon); G1.add(Hight); G1.add(Speed); G1.add(Acc_X); G1.add(Acc_Y); G1.add(Acc_Z); G1.add(Direction);
+        G1.add(Pressure); G1.add(Environmental_status); G1.add(CPU_load); G1.add(CPU_temperature); G1.add(Body_temperature); G1.add(LoraOrWifiSign);
+        G1.add(GPSSign); G1.add(Battery);
 
         // 建立組別 : 機體姿態
         G2 = new mGroup(370,10,450,300,"機體姿態<繪圖>");
@@ -421,7 +450,7 @@ class StatusWindows extends JFrame
         this.add(G5);
 
         // 建立組別 : 及時串流
-        G6 = new mGroup(830,10,1055,610,"及時串流");
+        G6 = new mGroup(830,10,1055,610,"即時串流");
         this.add(G6);
 
         this.setVisible(true);
