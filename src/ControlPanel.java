@@ -1,8 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
-import org.jetbrains.annotations.NotNull;
 import org.jxmapviewer.*;
 import org.jxmapviewer.google.GoogleMapsTileFactoryInfo;
 import org.jxmapviewer.viewer.DefaultTileFactory;
@@ -403,9 +401,26 @@ class StatusWindows extends JFrame
         this.setTitle(name);
         this.setLayout(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setFocusable(true);
+        this.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                char key = e.getKeyChar();
+                if(key == 'w')
+                {
+
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+            }
+        });
 
         // 建立組別 : 機體資訊
-        G1 = new mGroup(10,20 ,350,970,"機體資訊");
+        G1 = new mGroup(10,20 ,350,960,"機體資訊");
         this.add(G1);
         int X = 30 ;
         int Y = 40 ;
@@ -422,7 +437,7 @@ class StatusWindows extends JFrame
         Acc_Y = new mLabel(X,Y+Y*6,W,H,FontSize,"Y速度        0");
         Acc_Z = new mLabel(X,Y+Y*7,W,H,FontSize,"Z速度        0");
         Direction = new mLabel(X,Y+Y*8,W,H,FontSize,"方向         0 °");
-        Pressure = new mLabel(X,Y+Y*9,W,H,FontSize,"壓力         0");
+        Pressure = new mLabel(X,Y+Y*9,W,H,FontSize,"壓力         0 bps");
         Environmental_status = new mLabel(X,Y+Y*10,W,H,FontSize,"環境         - ");
         CPU_load = new mLabel(X,Y+Y*11,W,H,FontSize,"CPU          0 % ");
         CPU_temperature = new mLabel(X,Y+Y*12,W,H,FontSize,"CPU溫度      0 ℃ ");
@@ -504,9 +519,11 @@ class mGroup extends JPanel
 class Interface extends JPanel implements Runnable
 {
     int x,y,w,h ;
+    int Y_offset=0 , X_offset=0;
     Interface(int x , int y , int w , int h)
     {
-
+        Thread t = new Thread(this);
+        t.start();
         this.setLayout(null);
         this.setBounds(x,y,w,h);
         this.x = x; this.y = y; this.w = w; this.h = h ;
@@ -516,17 +533,51 @@ class Interface extends JPanel implements Runnable
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+        Y_offset++;
+        int LongX1 = 100;     int ShortX1 = 150;
+        int LongY1 = 15;      int ShortY1 = 30;
+        int LongX2 = 320;     int ShortX2 = 270;
+        int LongY2 = 15;      int ShortY2 = 30;
         g.setColor(Color.cyan);
-        g.fillRect(x,y,w,h/2);
+        g.fillRect(x,y,w,h);
         g.setColor(new Color(139,69,19));
-        g.fillRect(x,h/2,w,h/2);
+        g.fillRect(x,h/2 + Y_offset,w,h);
+        g.setColor(Color.BLACK);
+        int n = 30 ;
+        for(int i= 0 ; i < 7 ;i++ )
+        {
+            LongY1+=30; LongY2+=30;
+            g.drawLine(LongX1,LongY1,LongX2,LongY2);
+            g.drawString(""+n,LongX2+10 ,LongY2);
+            g.drawString(""+n,LongX1-20 ,LongY1);
+            n-=10;
+        }
+        n = 25;
+        for(int i= 0 ; i < 7 ;i++ )
+        {
+            ShortY1+=30; ShortY2+=30;
+            g.drawLine(ShortX1,ShortY1,ShortX2,ShortY2);
+            g.drawString(""+n,ShortX2+10,ShortY2);
+            g.drawString(""+n,ShortX1-20,ShortY1);
+            n-=10;
+        }
+
 
     }
 
-
     @Override
     public void run() {
+        while (true)
+        {
+            System.out.println(Y_offset);
+            try {
+                Thread.sleep(100);
+            }catch (Exception e)
+            {
 
+            }
+            repaint();
+        }
     }
 }
 
