@@ -462,7 +462,7 @@ class StatusWindows extends JFrame
         this.add(G3);
 
         // 建立繪圖容器
-        //G3.add(new Interface2(10,15,420,270));
+        G3.add(new Interface2(10,15,420,270));
 
         // 建立組別 : log
         G4 = new mGroup(370,630,750,350,"封包Log");
@@ -540,11 +540,11 @@ class Interface extends JPanel implements Runnable
         int [] xpoints = {x,x,x+w,x+w};
         int [] ypoints = {(y+h)/2+L_Y_offset,y+h,y+h,(y+h)/2+R_Y_offset};
         int npoint = 4 ;
-        /*
-            * 姿態控制參數
-            * L_Y_offset--;
-            * R_Y_offset--;
-        */
+
+            // 姿態控制參數
+             L_Y_offset++;
+             R_Y_offset--;
+
         int LongX1 = 100;     int ShortX1 = 150;
         int LongY1 = 15;      int ShortY1 = 30;
         int LongX2 = 320;     int ShortX2 = 270;
@@ -574,15 +574,12 @@ class Interface extends JPanel implements Runnable
             g.drawString(""+n,ShortX1-20,ShortY1);
             n-=10;
         }
-
-
     }
 
     @Override
     public void run() {
         while (true)
         {
-            System.out.println(R_Y_offset);
             try {
                 Thread.sleep(100);
             }catch (Exception e)
@@ -593,9 +590,12 @@ class Interface extends JPanel implements Runnable
         }
     }
 }
-/*
+
+
 class Interface2 extends JPanel implements Runnable
 {
+    int x,y,h,w ,r=10,angle = 0;
+
     Interface2(int x, int y, int w , int h)
     {
         Thread t = new Thread(this);
@@ -603,28 +603,46 @@ class Interface2 extends JPanel implements Runnable
         this.setBounds(x,y,w,h);
         this.setLayout(null);
         this.setVisible(true);
+        this.x = x ;
+        this.y = y ;
+        this.w = w ;
+        this.h = h ;
     }
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-
+        int xPoint = (int) (w/2 + 150*Math.cos(angle*Math.PI/180));
+        int yPoint = (int) (h/2 + 150*Math.sin(angle*Math.PI/180));
+        angle++;
+        g.setColor(Color.black);
+        g.fillRect(x,y,w,h);
+        g.setColor(Color.GREEN);
+        g.drawLine(x,h/2,x+w,h/2);
+        g.drawLine(w/2,y,w/2,y+h);
+        g.drawOval(w/2-20,h/2-20,40,40);
+        g.drawOval(w/2-50,h/2-50,100,100);
+        g.drawOval(w/2-80,h/2-80,160,160);
+        g.drawOval(w/2-120,h/2-120,240,240);
+        g.drawOval(w/2-150,h/2-150,300,300);
+        g.setColor(Color.red);
+        g.drawLine(w/2,h/2,xPoint,yPoint);
     }
 
     @Override
     public void run() {
         while (true)
         {
-            //repaint();
+            repaint();
             try {
-                Thread.sleep(100);
+                Thread.sleep(50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
 }
-*/
+
 
 
 
