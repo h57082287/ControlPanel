@@ -461,6 +461,9 @@ class StatusWindows extends JFrame
         G3 = new mGroup(370,320,450,300,"環境掃描(超音波或聲納<繪圖>)");
         this.add(G3);
 
+        // 建立繪圖容器
+        //G3.add(new Interface2(10,15,420,270));
+
         // 建立組別 : log
         G4 = new mGroup(370,630,750,350,"封包Log");
         this.add(G4);
@@ -519,7 +522,8 @@ class mGroup extends JPanel
 class Interface extends JPanel implements Runnable
 {
     int x,y,w,h ;
-    int Y_offset=0 , X_offset=0;
+    int L_Y_offset= -7 , R_Y_offset=-7;
+
     Interface(int x , int y , int w , int h)
     {
         Thread t = new Thread(this);
@@ -533,7 +537,14 @@ class Interface extends JPanel implements Runnable
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        Y_offset++;
+        int [] xpoints = {x,x,x+w,x+w};
+        int [] ypoints = {(y+h)/2+L_Y_offset,y+h,y+h,(y+h)/2+R_Y_offset};
+        int npoint = 4 ;
+        /*
+            * 姿態控制參數
+            * L_Y_offset--;
+            * R_Y_offset--;
+        */
         int LongX1 = 100;     int ShortX1 = 150;
         int LongY1 = 15;      int ShortY1 = 30;
         int LongX2 = 320;     int ShortX2 = 270;
@@ -541,7 +552,9 @@ class Interface extends JPanel implements Runnable
         g.setColor(Color.cyan);
         g.fillRect(x,y,w,h);
         g.setColor(new Color(139,69,19));
-        g.fillRect(x,h/2 + Y_offset,w,h);
+        g.fillPolygon(xpoints,ypoints,npoint);
+
+        // 畫尺規
         g.setColor(Color.BLACK);
         int n = 30 ;
         for(int i= 0 ; i < 7 ;i++ )
@@ -569,7 +582,7 @@ class Interface extends JPanel implements Runnable
     public void run() {
         while (true)
         {
-            System.out.println(Y_offset);
+            System.out.println(R_Y_offset);
             try {
                 Thread.sleep(100);
             }catch (Exception e)
@@ -580,7 +593,38 @@ class Interface extends JPanel implements Runnable
         }
     }
 }
+/*
+class Interface2 extends JPanel implements Runnable
+{
+    Interface2(int x, int y, int w , int h)
+    {
+        Thread t = new Thread(this);
+        t.start();
+        this.setBounds(x,y,w,h);
+        this.setLayout(null);
+        this.setVisible(true);
+    }
 
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+
+    }
+
+    @Override
+    public void run() {
+        while (true)
+        {
+            //repaint();
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+*/
 
 
 
